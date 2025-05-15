@@ -11,7 +11,7 @@ COPY . .
 EXPOSE 80
 
 ENV MONGO_USER=myuser
-# NOTE - MONGO_PASSWORD was not set as an ENV for security.
+ENV MONGO_PASSWORD=ThisIsNotThePassword
 
 CMD ["npm", "start"]
 #CMD [ "node", "app.js" ]

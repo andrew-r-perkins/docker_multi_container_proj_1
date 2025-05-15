@@ -97,7 +97,14 @@ COPY . .
 EXPOSE 3000
 CMD ["npm", "start"]
 
-I was going to use frontend-net, but I discovered that as react runs in the browser and now in the container, this approch doesn't work. So in the code I use something like 'http://localhost/goals' 
+NOTE - I was going to use frontend-net, but I discovered that as react runs in the browser and now in the container, this approch doesn't work. So in the code I use something like 'http://localhost/goals' 
 which makes a call to the internet (outside of the container), localhost is resolved to the local machine where port 80 has already been expose and published by backend.
+
+NOTE - I tried adding live code updated to the frontend, similar to the backend. For React, it was suggested to use the following switches in the 'docker run' when starting the frontend. THIS DID NOT WORK.
+ -v "C:\Users\andyt\Documents\training\docker\multi-01-starting-setup\frontend\src:/app/src"
+ -v /app/node_modules 
+ -e HOST=0.0.0.0 frontend
+The FULL SOLUTION is to Fully embrace WSL 2 - see https://www.docker.com/blog/docker-desktop-wsl-2-best-practices/
+
 >>> docker build -t frontend .
 >>> docker run -it --rm --name frontend -p 3000:3000 -d frontend
